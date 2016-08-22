@@ -5,6 +5,8 @@
  */
 package Interfaz;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author sony
@@ -50,6 +52,12 @@ public class Principal8 extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Monotype Corsiva", 3, 18)); // NOI18N
         jLabel2.setText("Horas Trabajadas");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 140, 20));
+
+        txtHoras.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtHorasKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtHoras, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 70, 40, 30));
 
         jLabel3.setFont(new java.awt.Font("Monotype Corsiva", 3, 18)); // NOI18N
@@ -81,6 +89,11 @@ public class Principal8 extends javax.swing.JFrame {
         jPanel1.add(cmdCalcular, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 240, -1, -1));
 
         cmdBorrar.setText("Borrar");
+        cmdBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdBorrarActionPerformed(evt);
+            }
+        });
         jPanel1.add(cmdBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 240, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -104,7 +117,15 @@ public class Principal8 extends javax.swing.JFrame {
     private void cmdCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCalcularActionPerformed
      String res1,res2;
      int horas,total,descuento,tpagar;
-        
+      
+     if(txtHoras.getText().isEmpty()){
+     getToolkit().beep();
+     JOptionPane.showMessageDialog(this, "Digite las Horas Trabajadas","Error",JOptionPane.ERROR_MESSAGE);
+     txtHoras.requestFocusInWindow();
+     }
+     
+     else{ 
+         
      horas=Integer.parseInt(txtHoras.getText());
      total= 20000*horas;
      descuento= (total*5)/100;
@@ -115,8 +136,25 @@ public class Principal8 extends javax.swing.JFrame {
      
      txtDescuento.setText(res2);
      txtTotal.setText(res1);
-        
+     
+     }
     }//GEN-LAST:event_cmdCalcularActionPerformed
+
+    private void cmdBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdBorrarActionPerformed
+     txtHoras.setText("");
+     txtTotal.setText("");
+     txtDescuento.setText("");
+     txtHoras.requestFocusInWindow();
+        
+    }//GEN-LAST:event_cmdBorrarActionPerformed
+
+    private void txtHorasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtHorasKeyTyped
+      char c=evt.getKeyChar(); 
+     if(!Character.isDigit(c)) { 
+              getToolkit().beep();  
+              evt.consume();
+          }    
+    }//GEN-LAST:event_txtHorasKeyTyped
 
     /**
      * @param args the command line arguments
