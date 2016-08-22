@@ -66,13 +66,18 @@ public class Principal8 extends javax.swing.JFrame {
                 txtDescuentoActionPerformed(evt);
             }
         });
-        jPanel1.add(txtDescuento, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, 110, 30));
+        jPanel1.add(txtDescuento, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 140, 110, 30));
 
         txtTotal.setEditable(false);
-        jPanel1.add(txtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 140, 110, 30));
+        jPanel1.add(txtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, 110, 30));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 380, 10));
 
         cmdCalcular.setText("Calcular");
+        cmdCalcular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdCalcularActionPerformed(evt);
+            }
+        });
         jPanel1.add(cmdCalcular, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 240, -1, -1));
 
         cmdBorrar.setText("Borrar");
@@ -95,6 +100,23 @@ public class Principal8 extends javax.swing.JFrame {
     private void txtDescuentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescuentoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDescuentoActionPerformed
+
+    private void cmdCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCalcularActionPerformed
+     String res1,res2;
+     int horas,total,descuento,tpagar;
+        
+     horas=Integer.parseInt(txtHoras.getText());
+     total= 20000*horas;
+     descuento= (total*5)/100;
+     tpagar=total-descuento;
+        
+     res1=String.valueOf(tpagar);
+     res2=String.valueOf(descuento);
+     
+     txtDescuento.setText(res2);
+     txtTotal.setText(res1);
+        
+    }//GEN-LAST:event_cmdCalcularActionPerformed
 
     /**
      * @param args the command line arguments
